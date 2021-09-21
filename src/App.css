@@ -1,0 +1,72 @@
+@font-face {
+  font-family: Caveat-SemiBold;
+  src: url(styles/fonts/static/Caveat-SemiBold.ttf);
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.text {
+  word-break: break-word;
+  line-height: 1.6;
+}
+
+/* ::-webkit-scrollbar-track {
+    background-color: rgb(37, 37, 51);
+  }
+  ::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 0px;
+    border-radius: 100px;
+    background-color: rgba(172, 163, 255, 0.5);
+  } */
+
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.container {
+  padding: 0px;
+}
+
+.appTitle {
+  padding-right: 2px;
+  font-size: 24px;
+  font-weight: 500;
+  font-family: Caveat-SemiBold;
+  opacity: 0.95;
+}
+
+.logoTitle {
+  padding: 3px 10px 4px 10px;
+  margin: 0px 8px 0px 5px;
+  border-radius: 6px;
+  font-family: Arial;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgb(28, 28, 47);
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.tagTitle {
+  font-size: 10px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.hintText {
+  padding: 30px;
+  text-align: center;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.textAlert {
+  padding: 30px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
+  opacity: 0.8;
+}
