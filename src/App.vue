@@ -73,7 +73,7 @@
         </v-dialog>
 
         <v-dialog v-model="dialogVkDonut" scrollable persistent>
-          <v-card color="#FDF5E6">
+          <v-card color="#F0D5CE">
             <v-card-title>Упс..</v-card-title>
             <v-divider></v-divider>
             <v-card-text
