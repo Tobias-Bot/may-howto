@@ -1,9 +1,9 @@
 <template>
   <div>
     <v-card>
-      <v-toolbar color="#FFF4ED" style="padding-top: 5px;">
+      <v-toolbar color="#FFEDE7" style="padding-top: 6px;">
         <v-row dense style="padding-bottom: 10px;">
-          <v-col cols="8">
+          <v-col cols="10">
             <v-text-field
               hide-details
               label="Найти упражнение"
@@ -14,73 +14,15 @@
               dense
               :value="searchText"
               color="white"
-              @input="(e) => searchQuestions(e)"
+              @input="(e) => searchTasks(e)"
             ></v-text-field>
-          </v-col>
-          <v-col cols="2">
-            <v-dialog v-model="dialogFilterSwitch" scrollable persistent>
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn color="#FFF4ED" block v-bind="attrs" v-on="on"
-                  ><v-icon v-show="!propsAreChanged" color="#717171"
-                    >mdi-filter-variant</v-icon
-                  >
-                  <v-icon v-show="propsAreChanged" color="black"
-                    >mdi-filter-variant-minus</v-icon
-                  >
-                </v-btn>
-              </template>
-              <v-card color="#FFF4ED">
-                <v-card-title>Фильтр</v-card-title>
-                <v-divider></v-divider>
-                <v-card-text
-                  style="text-align: center; padding: 20px; font-weight: 500;"
-                >
-                  <!-- <div
-                    v-for="prop in questProps"
-                    :key="prop.name"
-                    style="text-align: left"
-                  >
-                    <b>{{ prop.name }} ({{ filterProps[prop.propName] }})</b>
-                    <v-slider
-                      dense
-                      :hint="prop.hint"
-                      max="100"
-                      min="0"
-                      step="5"
-                      :value="filterProps[prop.propName]"
-                      persistent-hint
-                      @change="(value) => setFilterProps(value, prop.propName)"
-                    ></v-slider>
-                    <br />
-                  </div> -->
-                </v-card-text>
-                <v-divider></v-divider>
-                <v-card-actions>
-                  <v-btn
-                    color="blue darken-1"
-                    text
-                    @click="dialogFilterSwitch = false"
-                  >
-                    <v-icon>mdi-close</v-icon>
-                  </v-btn>
-                  <!-- <v-btn
-                    v-show="propsAreChanged"
-                    color="blue darken-1"
-                    text
-                    @click="resetFilterProps"
-                  >
-                    сбросить
-                  </v-btn> -->
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
           </v-col>
           <v-col cols="2">
             <v-dialog v-model="dialogAddSwitch" scrollable>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn
                   elevation="0"
-                  color="#FFF4ED"
+                  color="#FFEDE7"
                   block
                   v-bind="attrs"
                   v-on="on"
@@ -130,7 +72,7 @@
         ref="ListPage"
         flat
         tile
-        color="#FFC6A3"
+        color="#F0D0C7"
         :style="
           `display: block; max-height: ${pageHeight}px; overflow-y: auto; padding: 1px 0px 15px 0px;`
         "
@@ -140,13 +82,15 @@
         </div>
 
         <TaskCard
-          v-for="(task, i) in searchedTasks.filter((q, j) => j < questCountFilter)"
+          v-for="(task, i) in searchedTasks.filter(
+            (q, j) => j < tasksCountFilter
+          )"
           :key="i"
           :task="{ index: i, data: task }"
         />
 
         <div
-          v-show="loadQuests && questCountFilter <= searchedTasks.length"
+          v-show="loadTasks && tasksCountFilter <= searchedTasks.length"
           style="width: 100%; text-align: center; opacity: 0.7; font-size: 14px;"
         >
           <br />
@@ -176,58 +120,44 @@ export default {
   },
   data() {
     return {
-      colorTheme: "#F0EAD6",
       pageHeight: 0,
       searchText: "",
-      dialogFilterSwitch: false,
       dialogAddSwitch: false,
-      loadQuests: true,
+      loadTasks: true,
       searchedTasks: tasks,
 
-      questCountFilter: viewQuestCount,
-
-      filterProps: {
-        lvl: 0,
-        depth: 0,
-        closeness: 0,
-        emotions: 0,
-      },
-
-      propsAreChanged: false,
+      tasksCountFilter: viewQuestCount,
     };
   },
   mounted() {
-    this.pageHeight = document.documentElement.scrollHeight - 110 - 159;
+    this.pageHeight = document.documentElement.scrollHeight - 110 - 100;
   },
   updated() {
-    this.loadQuests = true;
+    this.loadTasks = true;
   },
   methods: {
-    searchQuestions(text) {
+    searchTasks(text) {
       this.searchText = text;
-      this.questCountFilter = viewQuestCount;
+      this.tasksCountFilter = viewQuestCount;
 
       if (text && text !== " ") {
         new Promise((resolve) =>
-          resolve(this.quests.filter((q) => q.text.includes(text)))
-        ).then((res) => (this.quests = res));
+          resolve(this.searchedTasks.filter((q) => q.title.includes(text)))
+        ).then((res) => (this.searchedTasks = res));
       } else {
-        this.quests = tasks;
-        this.topicQuestions(this.currentTab);
+        this.searchedTasks = tasks;
       }
     },
     onScroll(e) {
-      let viewHeight = this.$refs.ListPage[0].$refs.link.scrollHeight;
-      // console.log(e.target.scrollTop * 100 / viewHeight);
+      let viewHeight = this.$refs.ListPage.$refs.link.scrollHeight;
+
       if (
         (e.target.scrollTop * 100) / viewHeight >= 45 &&
-        this.questCountFilter <= tasks.length &&
-        this.loadQuests
+        this.tasksCountFilter <= tasks.length &&
+        this.loadTasks
       ) {
-        this.loadQuests = false;
-        this.questCountFilter += this.questCountFilter;
-        this.prevQuestsFilter = e.target.scrollTop;
-        // console.log("new cards are loaded");
+        this.loadTasks = false;
+        this.tasksCountFilter += this.tasksCountFilter;
       }
     },
   },

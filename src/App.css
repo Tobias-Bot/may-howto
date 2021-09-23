@@ -70,3 +70,19 @@ body {
   font-size: 18px;
   opacity: 0.8;
 }
+
+.cardBtn {
+  padding: 8px;
+  margin-right: 5px;
+  border-radius: 100px;
+  font-size: 26px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.cardTextBtn {
+  padding: 8px;
+  margin-right: 10px;
+  border-radius: 6px;
+  font-size: 22px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
+}

@@ -18,7 +18,7 @@
       <!-- Provides the application the proper gutter -->
       <v-container fluid>
         <v-dialog v-model="dialogSwitch" scrollable>
-          <v-card color="#FFD5BB">
+          <v-card color="#F0D5CE">
             <v-card-title>Привет!</v-card-title>
             <v-divider></v-divider>
             <v-card-text
@@ -53,12 +53,12 @@
         <v-card>
           <v-tabs-items v-model="tab">
             <v-tab-item>
-              <v-card flat color="#FFF4ED" :height="this.mainScreenHeight">
+              <v-card flat :color="this.colorTheme" :height="this.mainScreenHeight">
                 <Main />
               </v-card>
             </v-tab-item>
             <v-tab-item>
-              <v-card flat color="#FFF4ED" :height="this.mainScreenHeight">
+              <v-card flat :color="this.colorTheme" :height="this.mainScreenHeight">
                 <Favorites />
               </v-card>
             </v-tab-item>
@@ -70,7 +70,7 @@
     <v-footer
       app
       :height="this.footerHeight"
-      color="#FFF4ED"
+      color="#FFEDE7"
       style="padding: 0px 16px"
     >
       <v-tabs
@@ -114,7 +114,7 @@ export default {
     Favorites
   },
   data: () => ({
-    colorTheme: "#FFC6A3",
+    colorTheme: "#F0D0C7",
     toolbarHeight: 55,
     footerHeight: 110,
     mainScreenHeight: 0,
