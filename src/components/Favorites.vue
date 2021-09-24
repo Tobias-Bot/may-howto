@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card>
-      <v-toolbar color="#FFF4ED" style="padding-top: 5px;">
+      <v-toolbar color="#FFEDE7" style="padding-top: 5px;">
         <v-row dense style="padding-bottom: 10px;">
           <v-text-field
             hide-details

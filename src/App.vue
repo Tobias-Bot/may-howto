@@ -3,8 +3,8 @@
     <v-app-bar
       app
       :height="this.toolbarHeight"
-      :color="this.colorTheme"
-      style="box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);"
+      color="#FFEDE7"
+      elevation="0"
     >
       <v-toolbar-title>
         <a href="https://vk.com/warmay" hidden ref="linkRef"></a
@@ -197,8 +197,6 @@ export default {
     let savedCards = JSON.parse(localStorage.getItem("savedCards"));
 
     if (savedCards) this.$store.commit("setCards", savedCards);
-
-    this.getInitialProps();
   },
   mounted() {
     const screenHeight = document.documentElement.scrollHeight;
@@ -210,6 +208,8 @@ export default {
     //   .send("VKWebAppShowNativeAds", { ad_format: "reward" })
     //   .then((data) => console.log(data.result))
     //   .catch((error) => console.log(error));
+
+    this.getInitialProps();
   },
   methods: {
     subscribeModal() {
