@@ -249,7 +249,7 @@ export default {
               method: "donut.isDon",
               request_id: "info",
               params: {
-                owner_id: group_id,
+                owner_id: "-" + group_id,
                 v: "5.131",
                 access_token: this.token,
               },
