@@ -40,12 +40,12 @@
         <v-btn class="mt-2" text color="#A0847B" @click="sheet = !sheet">
           <v-icon>mdi-close</v-icon>
         </v-btn>
-        <div class="mt-2 mb-3" style="font-size: 18px; font-weight: 500;">
+        <div class="mt-2 mb-3" style="font-size: 18px; font-weight: 500; padding: 0px 10px;">
           {{ task.data.title }}
         </div>
         <div
           :style="
-            `max-height: ${sheetHeight}px; overflow-y: auto; padding: 10px 10px 200px 10px;`
+            `max-height: ${sheetHeight}px; overflow-y: auto; padding: 10px 10px 300px 10px;`
           "
         >
           <div
@@ -80,8 +80,6 @@ export default {
   },
   mounted() {
     this.sheetHeight = document.documentElement.scrollHeight;
-
-    console.log(this.task);
   },
   computed: {
     savedCards() {

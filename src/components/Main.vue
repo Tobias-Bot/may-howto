@@ -29,7 +29,7 @@
                   ><v-icon color="#717171">mdi-plus</v-icon>
                 </v-btn>
               </template>
-              <v-card color="#FFF4ED">
+              <v-card color="#F0D5CE">
                 <v-card-title>Предложить упражнение</v-card-title>
                 <v-divider></v-divider>
                 <v-card-text
@@ -41,10 +41,10 @@
                   администрацией мы добавим его в общий каталог
                   <br />
                   <br />
-                  <v-btn color="#59564F" text>
+                  <v-btn text>
                     <a
                       href="https://vk.com/warmay"
-                      style="text-decoration: none;"
+                      style="text-decoration: none; color: #6E5F5B;"
                       >Предложить</a
                     >
                   </v-btn>
@@ -54,7 +54,7 @@
                 <v-divider></v-divider>
                 <v-card-actions>
                   <v-btn
-                    color="blue darken-1"
+                    color="#6E5F5B"
                     text
                     @click="dialogAddSwitch = false"
                   >
