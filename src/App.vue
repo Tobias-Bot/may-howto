@@ -12,7 +12,7 @@
     <v-main>
       <!-- Provides the application the proper gutter -->
       <v-container fluid>
-        <v-dialog v-model="dialogSwitch" scrollable>
+        <!-- <v-dialog v-model="dialogSwitch" scrollable>
           <v-card color="#F0D5CE">
             <v-card-title>Привет!</v-card-title>
             <v-divider></v-divider>
@@ -39,7 +39,7 @@
               </v-btn>
             </v-card-actions>
           </v-card>
-        </v-dialog>
+        </v-dialog> -->
 
         <v-dialog v-model="dialogNotifySwitch" scrollable persistent>
           <v-card color="#F0D5CE">
@@ -97,7 +97,12 @@
             </v-card-text>
             <v-divider></v-divider>
             <v-card-actions>
-              <a href="https://vk.com/donut/warmay" hidden ref="donLinkRef" target="_blank"></a>
+              <a
+                href="https://vk.com/donut/warmay"
+                hidden
+                ref="donLinkRef"
+                target="_blank"
+              ></a>
               <v-btn color="#6E5F5B" text @click="goToDonut">
                 Оформить подписку
               </v-btn>
@@ -241,32 +246,6 @@ export default {
 
           bridge
             .send("VKWebAppCallAPIMethod", {
-              method: "groups.isMember",
-              request_id: "info",
-              params: {
-                user_id: this.userId,
-                group_id,
-                v: "5.131",
-                access_token: this.token,
-              },
-            })
-            .then((res) => {
-              let isMember = res.response;
-              if (!isMember && !this.dialogVkDonut) {
-                setTimeout(() => {
-                  this.dialogSwitch = true;
-                }, 20000);
-              }
-            });
-        })
-        .catch((e) => {
-          if (e.error_data.error_code == 4) {
-            this.dialogNotifySwitch = true;
-          }
-        })
-        .finally(() => {
-          bridge
-            .send("VKWebAppCallAPIMethod", {
               method: "donut.isDon",
               request_id: "info",
               params: {
@@ -279,7 +258,32 @@ export default {
               if (!r.response) {
                 this.dialogVkDonut = true;
               }
+
+              // bridge
+              //   .send("VKWebAppCallAPIMethod", {
+              //     method: "groups.isMember",
+              //     request_id: "info",
+              //     params: {
+              //       user_id: this.userId,
+              //       group_id,
+              //       v: "5.131",
+              //       access_token: this.token,
+              //     },
+              //   })
+              //   .then((res) => {
+              //     let isMember = res.response;
+              //     if (!isMember && !this.dialogVkDonut) {
+              //       setTimeout(() => {
+              //         this.dialogSwitch = true;
+              //       }, 10000);
+              //     }
+              //   });
             });
+        })
+        .catch((e) => {
+          if (e.error_data.error_code == 4) {
+            this.dialogNotifySwitch = true;
+          }
         });
     },
     goToMay() {
