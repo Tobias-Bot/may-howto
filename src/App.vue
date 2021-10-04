@@ -185,6 +185,8 @@ export default {
     dialogNotifySwitch: false,
     dialogVkDonut: false,
 
+    token: "",
+
     tab: null,
   }),
   created() {
@@ -235,7 +237,7 @@ export default {
         .then((r) => {
           this.dialogNotifySwitch = false;
 
-          let token = r.access_token;
+          this.token = r.access_token;
 
           bridge
             .send("VKWebAppCallAPIMethod", {
@@ -245,7 +247,7 @@ export default {
                 user_id: this.userId,
                 group_id,
                 v: "5.131",
-                access_token: token,
+                access_token: this.token,
               },
             })
             .then((res) => {
@@ -256,7 +258,13 @@ export default {
                 }, 20000);
               }
             });
-
+        })
+        .catch((e) => {
+          if (e.error_data.error_code == 4) {
+            this.dialogNotifySwitch = true;
+          }
+        })
+        .finally(() => {
           bridge
             .send("VKWebAppCallAPIMethod", {
               method: "donut.isDon",
@@ -264,7 +272,7 @@ export default {
               params: {
                 owner_id: group_id,
                 v: "5.131",
-                access_token: token,
+                access_token: this.token,
               },
             })
             .then((r) => {
@@ -272,11 +280,6 @@ export default {
                 this.dialogVkDonut = true;
               }
             });
-        })
-        .catch((e) => {
-          if (e.error_data.error_code == 4) {
-            this.dialogNotifySwitch = true;
-          }
         });
     },
     goToMay() {
