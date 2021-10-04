@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar app :height="this.toolbarHeight" color="#FFEDE7" elevation="0">
       <v-toolbar-title>
-        <a href="https://vk.com/warmay" hidden ref="linkRef"></a
+        <a href="https://vk.com/warmay" hidden ref="linkRef" target="_blank"></a
         ><span class="logoTitle" @click="goToMay">Мαú</span
         ><span class="appTitle">хауТу</span></v-toolbar-title
       >
@@ -97,7 +97,7 @@
             </v-card-text>
             <v-divider></v-divider>
             <v-card-actions>
-              <a href="https://vk.com/donut/warmay" hidden ref="donLinkRef"></a>
+              <a href="https://vk.com/donut/warmay" hidden ref="donLinkRef" target="_blank"></a>
               <v-btn color="#6E5F5B" text @click="goToDonut">
                 Оформить подписку
               </v-btn>

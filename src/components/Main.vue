@@ -45,6 +45,7 @@
                     <a
                       href="https://vk.com/warmay"
                       style="text-decoration: none; color: #6E5F5B;"
+                      target="_blank"
                       >Предложить</a
                     >
                   </v-btn>
